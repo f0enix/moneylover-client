@@ -7,7 +7,6 @@ class MoneyLoverClient {
    }
 
    async _postRequest(path, body, headers) {
-      console.log(`posting ${path} `, this._jwtToken)
       const res = await popsicle
          .request({
             method: 'POST',
@@ -44,15 +43,7 @@ class MoneyLoverClient {
             url: 'https://web.moneylover.me/api/user/login-url',
          })
          .use(popsicle.plugins.parse('json'));
-      console.log('loginUrl', loginUrl);
-      var d = {
-         headers: {
-               authorization: `Bearer ${loginUrl.body.data.request_token}`,
-               client: loginUrl.body.data.login_url.match('client=(.+?)&')[1],
-            },
-            body: { email, password }
-       }
-      console.log('will request token', d)
+
       const res = await popsicle
          .request({
             method: 'POST',
@@ -64,7 +55,7 @@ class MoneyLoverClient {
             body: { email, password },
          })
          .use(popsicle.plugins.parse('json'));
-console.log('res', res);
+
       return res.body.access_token;
    }
 
