@@ -31,6 +31,7 @@ module.exports = async (email, password) => {
       await config.set('jwtToken', token);
       return true;
    } catch (e) {
+      console.log(e)
       console.error('Login failed', e);
       return false;
    }
