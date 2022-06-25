@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config');
 const MoneyLover = require('../moneylover');
-const debug = process.env.DEBUG === 'true';
+const debug = true;//process.env.DEBUG === 'true';
 
 /**
  * Login function using email and password
@@ -21,6 +21,7 @@ module.exports = async (email, password) => {
       const jwtToken = jwt.decode(token);
        console.log('got token ', jwtToken)
       const ml = new MoneyLover(token);
+        console.log('going to fetch user info ')
       const userInfo = await ml.getUserInfo();
       if (debug) {
          console.log(
