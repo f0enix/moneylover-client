@@ -1,18 +1,8 @@
-const path = require('path');
-const os = require('os');
-const fse = require('fs-extra');
-
-const configFile = path.join(__dirname, '.moneylover-client');
 let config;
 
 async function ensureConfig() {
    if (config == null) {
-      const exists = await fse.exists(configFile);
-      if (!exists) {
-         config = {};
-      } else {
-         config = await fse.readJson(configFile);
-      }
+      config = {};
    }
 }
 
@@ -28,13 +18,9 @@ async function set(key, value) {
    } else {
       config[key] = value;
    }
-   await fse.writeJson(configFile, config);
 }
 
 async function clear() {
-   if (await fse.exists(configFile)) {
-      await fse.unlink(configFile);
-   }
    config = {};
 }
 
