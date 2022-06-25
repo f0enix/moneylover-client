@@ -39,13 +39,13 @@ module.exports = async ({
    const wallets = await ml.getWalletNames();
    let walletId = 'all';
    if (wallet) {
-      let wallet = wallets.find(
+      let fwallet = wallets.find(
          ({ _id, name }) => _id === wallet || name === wallet
       );
-      if (wallet == null) {
+      if (fwallet == null) {
          console.error('Wallet not found will use default ALL instead');
       } else {
-         walletId = wallet._id;
+         walletId = fwallet._id;
       }
    }
 
