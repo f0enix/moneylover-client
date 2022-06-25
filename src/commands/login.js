@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config');
 const MoneyLover = require('../moneylover');
-const debug = true;//process.env.DEBUG === 'true';
+const debug = process.env.DEBUG === 'true';
 
 /**
  * Login function using email and password
@@ -19,9 +19,7 @@ module.exports = async (email, password) => {
    token = await MoneyLover.getToken(email, password);
    try {
       const jwtToken = jwt.decode(token);
-       console.log('got token ', jwtToken)
       const ml = new MoneyLover(token);
-        console.log('going to fetch user info ')
       const userInfo = await ml.getUserInfo();
       if (debug) {
          console.log(
@@ -33,7 +31,6 @@ module.exports = async (email, password) => {
       await config.set('jwtToken', token);
       return true;
    } catch (e) {
-      console.log(e)
       console.error('Login failed', e);
       return false;
    }
