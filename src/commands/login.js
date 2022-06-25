@@ -19,6 +19,7 @@ module.exports = async (email, password) => {
    token = await MoneyLover.getToken(email, password);
    try {
       const jwtToken = jwt.decode(token);
+       console.log('got token ', jwtToken)
       const ml = new MoneyLover(token);
       const userInfo = await ml.getUserInfo();
       if (debug) {
