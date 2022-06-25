@@ -7,6 +7,7 @@ class MoneyLoverClient {
    }
 
    async _postRequest(path, body, headers) {
+      console.log(`posting ${path} `, this._jwtToken)
       const res = await popsicle
          .request({
             method: 'POST',
