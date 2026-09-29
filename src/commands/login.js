@@ -15,8 +15,9 @@ const debug = process.env.DEBUG === 'true';
  *     const success = await login('jonh@doe.com', 'helloworld');
  */
 module.exports = async (email, password) => {
-   let token;
-   token = await MoneyLover.getToken(email, password);
+   let token = await config.get('jwtToken');
+   if (!token)
+      token = await MoneyLover.getToken(email, password);
    try {
       const jwtToken = jwt.decode(token);
       const ml = new MoneyLover(token);
