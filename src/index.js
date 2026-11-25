@@ -7,6 +7,8 @@ const wallets = require('./commands/wallets');
 const logout = require('./commands/logout');
 const transactions = require('./commands/transactions');
 const categories = require('./commands/categories');
+const devices = require('./commands/devices');
+
 
 module.exports = {
    login,
@@ -18,4 +20,5 @@ module.exports = {
    logout,
    transactions,
    categories,
+   devices
 };
