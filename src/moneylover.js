@@ -32,7 +32,7 @@ class MoneyLoverClient {
          error.originalMessage = res.body.message;
          throw error;
       } else {
-         return res.body.data;
+         return res.body.data ? res.body.data : res.body;
       }
    }
 
