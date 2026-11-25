@@ -67,6 +67,14 @@ class MoneyLoverClient {
       return this._postRequest('/wallet/list');
    }
 
+   getUserDevices() {
+      return this._postRequest('/user/account');
+   }
+
+   removeUserDevice(deviceId) {
+      return this._postRequest('/user/remove-device', { deviceId });
+   }
+
    getWalletNames() {
       return cached('wallets', () => {
          return this._postRequest('/wallet/list').then((wallets) =>
